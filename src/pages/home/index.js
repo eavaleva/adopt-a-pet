@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { getPets } from '../../api/petfinder';
-import Hero from '../../components/hero';
-import Pet from '../../components/pet';
-import { useParams, Link } from 'react-router-dom';
+import { getPets } from '../../api/PetFinder';
+import { Hero } from '../../components/Hero';
+import { useParams, Link } from "react-router-dom";
+
 const HomePage = () => {
   const [data, setData] = useState(null);
-
-  const {type} = useParams();
+  const { type } = useParams(); // Fix me!
 
   useEffect(() => {
     async function getPetsData() {
@@ -34,7 +33,7 @@ const HomePage = () => {
           {data.map((animal) => (
             <Link // Change me to a Link!
               key={animal.id}
-              href={`/${animal.type.toLowerCase()}/${animal.id}`}
+              to={`/${animal.type.toLowerCase()}/${animal.id}`}
               className="pet"
             >
               <article>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, NavLink } from 'react';
-import { getPetTypes } from '../../api/petfinder';
+import { getPetTypes } from '../../api/PetFinder';
 import Logo from '../../assets/logo.svg';
 import Search from '../search';
 
