@@ -1,31 +1,47 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import Hero from '../../components/hero';
+import { getPets } from '../../api/PetFinder';
+import Pet from '../../components/pet';
+import { useLocation } from 'react-router';
 
-// import useHistory here.
+// import useLocation here
 
-const Search = () => {
+const SearchPage = () => {
+  // Get the search value from useLocation() here
+  const { search } = useLocation();
 
-  // get the history object here
+  const queryParams = useMemo(() => {
+    return new URLSearchParams(search);
+  }, [search]);
 
-  const searchInputRef = useRef();
+  const [pets, setPets] = useState([]);
 
-  const onSearchHandler = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    async function getPetsData() {
+      const petNameToFind = queryParams.get('name');
+      const petsData = await getPets('', petNameToFind);
 
-    const searchQuery = new URLSearchParams({
-      name: searchInputRef.current.value
-    }).toString();
+      setPets(petsData);
+    }
 
-    // imperatively redirect with history.push()
-  };
+    getPetsData();
+  }, [queryParams]);
 
   return (
-    <form onSubmit={onSearchHandler} className="search-form">
-      <input type="text" className="search" ref={searchInputRef} />
-      <button type="submit" className="search-button">
-        🔎
-      </button>
-    </form>
+    <div className="page">
+      <Hero displayText={`Results for ${queryParams.get('name')}`} />
+
+      <h3>Pets available for adoption near you</h3>
+
+      <main>
+        <div className="grid">
+          {pets.map((pet) => (
+            <Pet animal={pet} key={pet.id} />
+          ))}
+        </div>
+      </main>
+    </div>
   );
 };
 
-export default Search;
+export default SearchPage;

@@ -1,7 +1,8 @@
-import React, { useEffect, useState, NavLink } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPetTypes } from '../../api/PetFinder';
 import Logo from '../../assets/logo.svg';
 import Search from '../search';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   const [petTypes, setPetTypes] = useState([]);
@@ -18,32 +19,37 @@ const Navigation = () => {
   return (
     <nav>
       <div className="nav-logo">
-        <img src={Logo} alt="Petlover" />
+        {/* This link should only have the to prop */}
+        <NavLink to="/">
+          <img src={Logo} alt="Petlover" />
+        </NavLink>
         <Search />
       </div>
       <ul className="nav-links">
-        <li key="all">
+        <li>
           {/* This link should have an activeClassName and exact prop */}
           <NavLink
-            href="/"
-            activeClassName=".nav-link-active"
+            to="/"
+            className="nav-link"
+            activeClassName="nav-link-active"
           >
             All Pets
           </NavLink>
         </li>
         {petTypes
           ? petTypes.map((type) => (
-              <li key={type.name}>
-                {/* These links should have an activeClassName prop */}
+            <li>
+              {/* These links should have an activeClassName prop */}
               <NavLink
-                  href={`/${type._links.self.href.split('/').pop()}`}
-                  key={type.name}
-                  activeClassName=".nav-link-active"
-                >
-                  {type.name}s
+                to={`/${type._links.self.href.split('/').pop()}`}
+                key={type.name}
+                className="nav-link"
+                activeClassName="nav-link-active"
+              >
+                {type.name}s
               </NavLink>{' '}
-              </li>
-            ))
+            </li>
+          ))
           : 'Loading...'}
       </ul>
     </nav>

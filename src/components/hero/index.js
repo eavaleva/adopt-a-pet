@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hero = ({ image, displayText }) => {
+export const Hero = ({ image, displayText }) => {
   const type = ''
 
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getPets } from '../../api/PetFinder';
-import { Hero } from '../../components/Hero';
+import { Hero } from '../../components/hero'
 import { useParams, Link } from "react-router-dom";
 
 const HomePage = () => {
