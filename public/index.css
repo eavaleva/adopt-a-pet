@@ -7,7 +7,7 @@
 
 .nav-links {
   padding: 12px 180px;
-  background: #56009b;
+  background: #7d559d;
   color: white;
   list-style: none;
   display: flex;
@@ -24,7 +24,7 @@
 }
 
 .nav-link-active {
-  background: #320059;
+  background: #420273;
 }
 
 .pet-type-label {

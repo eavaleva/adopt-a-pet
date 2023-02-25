@@ -21,7 +21,7 @@ const Navigation = () => {
       <div className="nav-logo">
         {/* This link should only have the to prop */}
         <NavLink to="/">
-          <img src={Logo} alt="Petlover" />
+          <img src={Logo} alt="adorePets" />
         </NavLink>
         <Search />
       </div>
@@ -31,7 +31,6 @@ const Navigation = () => {
           <NavLink
             to="/"
             className="nav-link"
-            activeClassName="nav-link-active"
           >
             All Pets
           </NavLink>
